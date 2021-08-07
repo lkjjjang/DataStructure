@@ -5,6 +5,8 @@ import Interface_form.SingleLinkedList;
 import Test.Animal;
 import Test.Cat;
 
+import java.util.Arrays;
+
 public class Program {
 
     public static void main(String[] args) throws CloneNotSupportedException {
@@ -26,8 +28,6 @@ public class Program {
         cats.add(cat2);
         cats.add(cat3);
         cats.add(cat4);
-
-        cats.sort();
 
 
         SingleLinkedList<Integer> original = new SingleLinkedList<>();
@@ -58,5 +58,40 @@ public class Program {
         System.out.println("copy list reference : " + copy);
         System.out.println("clone list reference : " + clone);
 
+
+        String str = "abc";
+        //System.out.printf(reverse(str));
+
+        System.out.printf(recursive(str));
+
+    }
+
+    private static String recursive(String str) {
+        if (str.length() == 1) {
+            return str;
+        }
+
+        return recursive(str.substring(1)) + str.charAt(0);
+    }
+
+    private static String reverse(String str) {
+        char[] chars = str.toCharArray();
+
+        for (int i = 0; i < chars.length / 2; i++) {
+            char temp = chars[i];
+            chars[i] = chars[chars.length - 1 - i];
+            chars[chars.length - 1 - i] = temp;
+        }
+
+        return toString(chars);
+    }
+
+    public static String toString(char[] chars) {
+        StringBuilder sb = new StringBuilder(chars.length * 2);
+
+        for (int i = 0; i < chars.length; i++) {
+            sb.append(chars[i]);
+        }
+        return sb.toString();
     }
 }
